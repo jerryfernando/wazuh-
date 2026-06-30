@@ -179,12 +179,18 @@ tail -f /var/ossec/logs/ossec.log
 ```
 ## cek port
 ```
+ss -tulpn | egrep '1514|1515'
+```
+```
 Install agent = pasang CCTV
 Manager = ruang monitoring
 Port 1514/1515 = kabel network CCTV
-
-ss -tulpn | egrep '1514|1515'
 ```
+```
+1514 TCP → data log
+1515 TCP → enrollment
+```
+
 ## delete wazuh 
 Hentikan semua service (aman)
 ```
