@@ -177,7 +177,13 @@ cek log service
 ```
 tail -f /var/ossec/logs/ossec.log
 ```
-
+##cek port
+Install agent = pasang CCTV
+Manager = ruang monitoring
+Port 1514/1515 = kabel network CCTV
+```
+ss -tulpn | egrep '1514|1515'
+```
 ## delete wazuh 
 Hentikan semua service (aman)
 ```
