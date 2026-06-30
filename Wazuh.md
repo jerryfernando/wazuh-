@@ -90,6 +90,10 @@ install-manager.yml
     - debug:
         var: wazuh_info.stdout_lines
 ```
+install mangaer wazuh
+```
+asible-playbook /opt/ansible/wazuh-ansible/install-manager.yml
+```
 
 Install agent wazuh semua server 
 
@@ -146,6 +150,11 @@ install-agent.yml
         enabled: yes
         state: started
 ```
+install agent wazuh
+```
+asible-playbook /opt/ansible/wazuh-ansible/install-agent.yml
+```
+
 lihat package terinstal
 ```
 rpm -qa | grep wazuh
