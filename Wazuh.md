@@ -146,6 +146,18 @@ install-agent.yml
         enabled: yes
         state: started
 ```
+cek systemd
+```
+systemctl stop wazuh-dashboard
+systemctl stop wazuh-indexer
+systemctl stop wazuh-manager
+systemctl status wazuh-dashboard
+systemctl status wazuh-indexer
+systemctl status wazuh-manager
+systemctl start wazuh-dashboard
+systemctl start wazuh-indexer
+systemctl start wazuh-manager
+```
 
 lihat password wazuh
 ```
