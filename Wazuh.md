@@ -90,3 +90,59 @@ install-manager.yml
     - debug:
         var: wazuh_info.stdout_lines
 ```
+
+Install agent wazuh semua server 
+
+```
+install-agent.yml
+```
+```
+- name: Install Wazuh Agent on CentOS 7.6
+  hosts: all
+  become: yes
+
+  vars:
+    wazuh_manager_ip: "192.168.0.200"
+
+  tasks:
+
+    - name: Update system
+      yum:
+        name: "*"
+        state: latest
+
+    - name: Install dependencies
+      yum:
+        name:
+          - curl
+          - ca-certificates
+        state: present
+
+    - name: Add Wazuh repo
+      copy:
+        dest: /etc/yum.repos.d/wazuh.repo
+        content: |
+          [wazuh]
+          gpgcheck=1
+          gpgkey=https://packages.wazuh.com/key/GPG-KEY-WAZUH
+          enabled=1
+          name=Wazuh repository
+          baseurl=https://packages.wazuh.com/4.x/yum/
+
+    - name: Install Wazuh agent
+      yum:
+        name: wazuh-agent
+        state: present
+
+    - name: Set manager IP
+      lineinfile:
+        path: /var/ossec/etc/ossec.conf
+        regexp: "<address>.*</address>"
+        line: "      <address>{{ wazuh_manager_ip }}</address>"
+
+    - name: Enable agent
+      systemd:
+        name: wazuh-agent
+        enabled: yes
+        state: started
+```
