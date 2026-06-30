@@ -178,6 +178,7 @@ cek log service
 tail -f /var/ossec/logs/ossec.log
 ```
 ## cek port
+
 ```
 ss -tulpn | egrep '1514|1515'
 ```
