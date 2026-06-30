@@ -165,8 +165,8 @@ cek log service
 ```
 tail -f /var/ossec/logs/ossec.log
 ```
-```
-delete wazuh 
+
+## delete wazuh 
 Hentikan semua service (aman)
 ```
 systemctl disable wazuh-manager wazuh-indexer wazuh-dashboard
@@ -198,8 +198,7 @@ CHECK CLEAN
 ```
 rpm -qa | grep wazuh
 ```
-HARUS kosong.
-```
+HARUS kosong
 
 catatan
 ```
