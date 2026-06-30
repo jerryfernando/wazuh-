@@ -146,3 +146,98 @@ install-agent.yml
         enabled: yes
         state: started
 ```
+
+lihat password wazuh
+```
+sudo /usr/share/wazuh-indexer/plugins/opensearch-security/tools/wazuh-passwords-tool.sh -a
+```
+
+cek agent yang sudah terdaftar di manager, ceknya di server manager
+```
+/var/ossec/bin/agent_control -lc
+```
+cek versi wazuh manger (versi manger dan agent harus sama)
+```
+sudo su -
+/var/ossec/bin/wazuh-control info
+```
+cek log service
+```
+tail -f /var/ossec/logs/ossec.log
+```
+```
+delete wazuh 
+Hentikan semua service (aman)
+```
+systemctl disable wazuh-manager wazuh-indexer wazuh-dashboard
+systemctl daemon-reload
+```
+Remove package (INI WAJIB)
+```
+yum remove wazuh-manager wazuh-indexer wazuh-dashboard -y
+```
+Kalau mau lebih bersih:
+```
+rpm -e wazuh-manager wazuh-indexer wazuh-dashboard --nodeps
+```
+Hapus sisa config & data
+```
+rm -rf /var/ossec
+rm -rf /etc/wazuh*
+rm -rf /usr/share/wazuh*
+rm -rf /var/lib/wazuh*
+rm -rf /usr/share/wazuh-indexer
+rm -rf /usr/share/wazuh-dashboard
+```
+Hapus user/service leftover
+```
+userdel wazuh 2>/dev/null
+groupdel wazuh 2>/dev/null
+```
+CHECK CLEAN
+```
+rpm -qa | grep wazuh
+```
+HARUS kosong.
+```
+
+catatan
+```
+✅ Minggu 1
+
+Wazuh Manager
+Wazuh Agent
+Dashboard
+
+✅ Minggu 2
+
+Suricata IDS
+ET Open Rules
+Integrasi ke Wazuh
+
+✅ Minggu 3
+
+Zeek Network Security Monitor
+Integrasi Zeek → Wazuh
+
+✅ Minggu 4
+
+MISP (Threat Intelligence)
+Integrasi IOC ke Wazuh
+
+✅ Minggu 5
+
+TheHive + Cortex
+Incident Response & Case Management
+
+✅ Minggu 6
+
+Shuffle SOAR
+Otomasi respons (misalnya blokir IP otomatis di firewall saat Suricata mendeteksi serangan)
+
+Hasil akhirnya adalah platform SOC yang mendekati arsitektur yang digunakan banyak perusahaan:
+
+Suricata (NDR) → Zeek → Wazuh (SIEM/XDR) → MISP (Threat Intelligence) → TheHive (Incident Response) → Shuffle (SOAR)
+
+Stack ini sangat kuat untuk portofolio DevSecOps dan SOC Engineer, sekaligus bisa menjadi fondasi jika nanti kamu ingin menawarkan layanan Managed SOC kepada klien.
+```
