@@ -1,4 +1,6 @@
 Install Wazuh Manager + Indexer + Dashboard VIA Ansible
+<img width="1911" height="977" alt="image" src="https://github.com/user-attachments/assets/50dffe8d-7043-4246-ace7-f05c7e0564d2" />
+
 ```
 install-manager.yml
 ```
