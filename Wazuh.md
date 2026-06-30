@@ -146,6 +146,13 @@ install-agent.yml
         enabled: yes
         state: started
 ```
+lihat package terinstal
+```
+rpm -qa | grep wazuh
+atau
+yum list installed | grep wazuh
+```
+
 cek systemd
 ```
 systemctl stop wazuh-dashboard
